@@ -1,24 +1,25 @@
-const player1 = {
-  score: 0,
-  lastroll: 0,
+function Player() {
+  this.score = 0;
+  this.lastroll = 0;
 }
 
-const player2 = {
-  score: 0,
-  lastroll: 0,
+// player1.prototype.AddScore = function() {
+//   this.score += getRandomInt(6);
+// }
+
+let newPlayer = new Player(0,0);
+let newPlayer2 = new Player(0,0);
+
+
+
+// function getRandomInt(max) {
+//   return Math.ceil(Math.random() * 6);
+// }
+
+Player.prototype.getInt = function(max) {
+  this.lastroll = Math.ceil(Math.random() * 6);
 }
 
-player1.prototype.AddScore = function() {
-  this.score += getRandomInt(6);
-}
-
-
-
-function getRandomInt(max) {
-  return Math.ceil(Math.random() * max);
-}
-
-player1.prototype.getInt()
 
 
 
@@ -26,13 +27,14 @@ player1.prototype.getInt()
 $(document).ready(function() {
   $("#button1").click(function(event) {
     event.preventDefault();
-    getRandomInt.AddScore(player1)
-    console.log(player1);
+    newPlayer.getInt();
+    console.log(newPlayer);
     
 
   });
   $("#button2").click(function(event) {
     event.preventDefault();
-
+    newPlayer2.getInt();
+    console.log(newPlayer2);
   });
 });
