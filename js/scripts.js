@@ -117,7 +117,7 @@ $(document).ready(function() {
   });
   $("#buttonw").click(function(event) {
     event.preventDefault()
-    location.reload();
+    window.location.reload();
    
     
   });
