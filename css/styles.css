@@ -4,7 +4,11 @@
   background-color: rgb(165, 186, 245);
   display: block;
   margin: auto;
-  width: 33%;
+  width: 40%;
   box-sizing: border-box;
   float: left;
 }
+ span {
+  margin-left: 45%;
+ }
+
