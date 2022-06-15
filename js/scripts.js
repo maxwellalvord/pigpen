@@ -91,7 +91,6 @@ $(document).ready(function() {
     newPlayer2.GetInt2();
     newPlayer2.getMatch(newPlayer2.lastroll2,newPlayer2.lastroll4);
     $("#p2score").html(newPlayer2.score);
-
     console.log(newPlayer2);
   });
 
