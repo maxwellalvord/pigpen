@@ -1,0 +1,10 @@
+.column {
+  border: 2px solid black;
+  padding: 15px;
+  background-color: rgb(165, 186, 245);
+  display: block;
+  margin: auto;
+  width: 33%;
+  box-sizing: border-box;
+  float: left;
+}
