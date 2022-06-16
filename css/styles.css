@@ -9,6 +9,28 @@
   float: left;
 }
  span {
-  margin-left: 45%;
+  display: flex;
+  justify-content: center;
  }
 
+.but {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.buttony{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.buttoni{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#gotaone {
+  display: none;
+}
