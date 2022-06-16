@@ -38,3 +38,7 @@
 #buttonHold{
   display: none;
 }
+
+body {
+  background: linear-gradient(to right,#64b6e6, #9198e5);
+}
