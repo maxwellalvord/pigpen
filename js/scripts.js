@@ -5,8 +5,9 @@ function Player() {
   this.lastroll4 = [];
 }
 
-let newPlayer = new Player(0,0, [], []);
-let newPlayer2 = new Player(0,0, [], []);
+let newPlayer = new Player(0, 0, [], []);
+let newPlayer2 = new Player(0, 0, [], []);
+let newPlayer3 = new Player(0, 0, [], []);
 
 
 Player.prototype.GetInt = function(max) {
@@ -16,6 +17,7 @@ Player.prototype.GetInt = function(max) {
 Player.prototype.GetInt2 = function(max) {
   this.lastroll2.push(Math.ceil(Math.random() * 6));
   this.lastroll4.push(Math.ceil(Math.random() * 6));
+  console.log(this.lastroll2);
 }
 
 Player.prototype.getMatch = function(array2, array4) {
@@ -31,24 +33,45 @@ Player.prototype.getMatch = function(array2, array4) {
     }
 }	
 
-function removeText() {
-  $("#p1score2").empty();
-  $("#p1score2").text(" ");
-}
+// var arr = ['1','2','3'];
+// arr = arr.map(x => parseInt(x));
 
-Player.prototype.AddScore2 = function(){
-    result = $("#p1score2").text(" ");
-  if ((this.lastroll2.toString() !== "1") && (this.lastroll4.toString() !== "1")){
-    result =  $("#p1score2").text("keep rolling");
-  } else if ((this.lastroll2.toString() === "1") || (this.lastroll4.toString() === "1")){
-    // let a = $("#p1score2").text("");
-    result = $("#p1score2").text("you got one 1, no points for you!");
-  } else  {
-    result = $("#p1score2").text("uh no theres goes all your points...");
-  }
-  return result;
-}
+// console.log(arr);
+//Array(3) [ 1, 2, 3 ]
 
+
+
+// dataSum += parseFloat(data[i]);
+
+// var data = [];
+// data = dataString.split(",");
+
+// return "100,200,300,400,500".split(/,/).map(parseFloat).reduce(function(x,y){return x+y;})
+
+// function removeText() {
+//   $("#p1score2").empty();
+//   $("#p1score2").text(" ");
+// }
+
+
+
+
+// Player.prototype.AddScore2 = function(){
+//   for (let i = this.lastroll2.length - 1; i >= 0; i--) {
+//   if ((this.lastroll2 !== 1) && this.lastroll4 !== 1){
+//     let result =  $("#p1score2").text("keep rolling");
+//     return result;
+//   } else if ((this.lastroll2 === 1) || (this.lastroll4 === 1)){
+//     // let a = $("#p1score2").text("");
+//     $("#p1score2").removeText(empty());
+//     let result = $("#p1score2").text("you got one 1, no points for you!");
+//     return result;
+//   } else  {
+//     let result = $("#p1score2").text("uh no theres goes all your points...");
+//     return result;
+//   }
+// }
+// }
 
 // function test (){
 //   if (('2' !== "1") && '4' !== "1"){
@@ -80,7 +103,28 @@ Player.prototype.AddScore2 = function(){
   
 //   'uh no theres goes all your points...'
 
+// function compMath() {
+//   let rando = (Math.ceil(Math.random() * 6));
+//   console.log(rando);
+//   return rando;
+// }
 
+Player.prototype.GetNew = function(max) {
+  let rando = Math.ceil(Math.random() * 6)
+  if (rando != 1) {
+    this.lastroll = this.lastroll + rando;
+    console.log(this.lastroll);
+  } else {
+    this.lastroll += 0;
+  }
+  let randa = Math.ceil(Math.random() * 6)
+  if (randa != 1) {
+    this.lastroll = this.lastroll + randa;
+    console.log(this.lastroll);
+  } else {
+    this.lastroll += 0;
+  }
+}
 
 
 
@@ -99,10 +143,10 @@ Player.prototype.AddScore = function(){
   
 }
 
-Player.prototype.DecideWin = function(num, num1){
-  if (newPlayer.score > newPlayer2.score){
+Player.prototype.DecideWin = function(num, num1, num2){
+  if (num > num || num > num2){
     return "player one wins";
-  } else if (newPlayer.score < newPlayer2.score){
+  } else if (num < num1 || num < num2){
     return "player two wins";
   } else{
     return "it is a tie, fight to the death"
@@ -112,6 +156,8 @@ Player.prototype.DecideWin = function(num, num1){
 
 
 $(document).ready(function() {
+  // let newPlayer = new Player(0, 0, [], []);
+  // let newPlayer2 = new Player(0, 0, [], []);
   $("#button1").click(function(event) {
     event.preventDefault();
     newPlayer.GetInt();
@@ -124,7 +170,7 @@ $(document).ready(function() {
     event.preventDefault();
     newPlayer.GetInt2();
     newPlayer.getMatch(newPlayer.lastroll2, newPlayer.lastroll4);
-    newPlayer.AddScore2(newPlayer.lastroll2, newPlayer2.lastroll4);
+    // newPlayer.AddScore2(newPlayer.lastroll2, newPlayer2.lastroll4);
     $("#p1score").html(newPlayer.score);
     console.log(newPlayer);
   });
@@ -133,7 +179,7 @@ $(document).ready(function() {
     event.preventDefault();
     newPlayer2.GetInt2();
     newPlayer2.getMatch(newPlayer2.lastroll2,newPlayer2.lastroll4);
-    newPlayer.AddScore2();
+    // newPlayer.AddScore2();
     $("#p2score").html(newPlayer2.score);
     console.log(newPlayer2);
   });
@@ -148,11 +194,11 @@ $(document).ready(function() {
 
   $("#button3").click(function(event) {
     event.preventDefault();
-    $("#winner").html(newPlayer.DecideWin(newPlayer.score, newPlayer2.score));
+    $("#winner").html(newPlayer.DecideWin(newPlayer.score, newPlayer2.score, newPlayer3.score ));
     newPlayer.score = 0;
     newPlayer2.score = 0;
-    newPlayer.lastroll = 0;
-    newPlayer2.lastroll = 0;
+    newPlayer.lastroll = [];
+    newPlayer2.lastroll = [];
     newPlayer.lastroll2 = [];
     newPlayer2.lastroll4 = [];
     $("#p1score").html(newPlayer.score);
@@ -164,13 +210,21 @@ $(document).ready(function() {
     window.location.reload();
   });
   
-  $("#buttonp").click(function(event) {
+  $("#tuna").click(function(event) {
     event.preventDefault()
     $("#button2").hide();
     $("#buttonx").hide();
+    $("#buttonHold").show();
+    // $("#button3").hide();
   });
-  $("#buttonh").click(function(event) {
+  $("#bullshark").click(function(event) {
     event.preventDefault()
     window.location.reload();
+  });
+  $("#buttonHold").click(function(event) {
+    event.preventDefault();
+    newPlayer3.GetNew();
+    newPlayer3.AddScore(newPlayer.DecideWin(newPlayer.score, newPlayer3.score));
+    $("#p2score").html(newPlayer3.score);
   });
 });
